@@ -18,7 +18,7 @@ namespace TaskRunner
             //var tasks = new List<ITaskRun>() { new NameValidation(), new AddressValidation() };
             var tasks = TaskRuns;
 
-            var newModel = new ClientModel { ClientName = "RichardWysocki", Address1 = "1674 Fort Washington Ave", City = null, State = "", Zip = "" };
+            var newModel = new ClientModel { ClientName = "RichardWysocki", Address1 = "1234 Smith Street", City = null, State = "", Zip = "" };
 
             var responselist = new List<ValidationReturn>();
             foreach (var item in tasks)
