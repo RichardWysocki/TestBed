@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Lamar;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,8 +21,24 @@ namespace TaskRunner
                     x.WithDefaultConventions();
 
                 });
-                
+                //x.Scan(x =>
+                //{
+                //    x.Assembly(typeof(Program).Assembly);
+                //    x.RegisterConcreteTypesAgainstTheFirstInterface();
+                //    //x.AddAllTypesOf<ITaskRun>(); //.NameBy(type => type.Name.ToLower());
+                //});
+                //x.For<IEnumerable<ITaskRun>>().Add(x => x.GetServices<ITaskRun>());
+                x.For<ITaskRun>().Add<NameValidation>();
+                x.For<ITaskRun>().Add<AddressValidation>();
+
+
+                //x.For<ITaskRun>().Add(y => y.)
+
+
             });
+            
+
+
             var response = container.GetAllInstances<ITaskRun>();
             Console.WriteLine("Hello World!");
 
