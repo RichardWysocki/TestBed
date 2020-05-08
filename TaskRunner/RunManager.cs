@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TaskRunner.ValidationRules;
 
 namespace TaskRunner
 {
     public class RunManager : IRunManager
     {
         //public RunManager(ITaskRun taskRuns)
-        public RunManager(IEnumerable<ITaskRun> taskRuns)
+        public RunManager(IEnumerable<ITaskValidation> taskRuns)
         {
             TaskRuns = taskRuns;
         }
 
-        public IEnumerable<ITaskRun> TaskRuns { get; }
+        public IEnumerable<ITaskValidation> TaskRuns { get; }
         //public ITaskRun TaskRuns { get; }
 
         public void Run()

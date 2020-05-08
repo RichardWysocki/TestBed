@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TaskRunner
+﻿namespace TaskRunner.ValidationRules
 {
-    class AddressValidation : ITaskRun
+    public class AddressValidation : ITaskValidation
     {
         public ValidationReturn Execute(ClientModel clientModel)
         {
             var status = new ValidationReturn() { Valid = true };
 
 
-            if (clientModel.City?.Length == 0  || clientModel.State?.Length == 0|| clientModel.Zip?.Length == 0|| clientModel.Address1?.Length == 0)
+            if (clientModel.City?.Length == 0 || clientModel.State?.Length == 0 || clientModel.Zip?.Length == 0 || clientModel.Address1?.Length == 0)
             {
                 status.Valid = false;
                 status.ErrorMessage = "Client Address must be valid.";

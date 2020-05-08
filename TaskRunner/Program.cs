@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Lamar;
 using Microsoft.Extensions.DependencyInjection;
+using TaskRunner.ValidationRules;
 
 namespace TaskRunner
 {
@@ -15,21 +16,22 @@ namespace TaskRunner
             var container = new Container(x =>
             {
                 // Using StructureMap style registrations
-                x.Scan(x =>
-                {
-                    x.Assembly(typeof(Program).Assembly);
-                    x.WithDefaultConventions();
-
-                });
                 //x.Scan(x =>
                 //{
                 //    x.Assembly(typeof(Program).Assembly);
-                //    x.RegisterConcreteTypesAgainstTheFirstInterface();
-                //    //x.AddAllTypesOf<ITaskRun>(); //.NameBy(type => type.Name.ToLower());
+                //    x.WithDefaultConventions();
+
                 //});
+                x.Scan(x =>
+                {
+                    x.Assembly(typeof(Program).Assembly);
+                    x.AddAllTypesOf<ITaskValidation>().NameBy(type => type.Name.ToLower());
+                    x.AddAllTypesOf<IFantasySeries>().NameBy(type => type.Name.ToLower());
+                    x.WithDefaultConventions();
+                });
                 //x.For<IEnumerable<ITaskRun>>().Add(x => x.GetServices<ITaskRun>());
-                x.For<ITaskRun>().Add<NameValidation>();
-                x.For<ITaskRun>().Add<AddressValidation>();
+                //x.For<ITaskRun>().Add<NameValidation>();
+                //x.For<ITaskRun>().Add<AddressValidation>();
 
 
                 //x.For<ITaskRun>().Add(y => y.)
@@ -39,7 +41,7 @@ namespace TaskRunner
             
 
 
-            var response = container.GetAllInstances<ITaskRun>();
+            var response = container.GetAllInstances<ITaskValidation>();
             Console.WriteLine("Hello World!");
 
             var bar = container.GetService<IRunManager>();

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TaskRunner
+﻿namespace TaskRunner.ValidationRules
 {
-    class NameValidation : ITaskRun
+    public class NameValidation : ITaskValidation
     {
         public ValidationReturn Execute(ClientModel clientModel)
         {
