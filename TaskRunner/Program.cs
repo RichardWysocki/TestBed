@@ -28,6 +28,7 @@ namespace TaskRunner
                     x.AddAllTypesOf<ITaskValidation>().NameBy(type => type.Name.ToLower());
                     x.AddAllTypesOf<IFantasySeries>().NameBy(type => type.Name.ToLower());
                     x.WithDefaultConventions();
+                   
                 });
                 //x.For<IEnumerable<ITaskRun>>().Add(x => x.GetServices<ITaskRun>());
                 //x.For<ITaskRun>().Add<NameValidation>();
